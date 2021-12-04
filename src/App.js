@@ -1,4 +1,5 @@
 import Routes from 'routes';
+import { CssBaseline } from '@material-ui/core';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Toaster } from 'react-hot-toast';
@@ -27,6 +28,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Context >
+        <CssBaseline />
         <Routes />
       </Context>
       <Toaster position="top-right" />

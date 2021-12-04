@@ -3,14 +3,26 @@ import { PATHS } from 'routes';
 export const landingPageLinkList = [
   {
     islink: false,
-    title: 'Login',
-    link: '/login',
+    title: 'HOME',
+    link: '/',
+    className: 'login-link'
+  }, 
+  {
+    islink: false,
+    title: 'GAMES',
+    link: '/',
     className: 'login-link'
   },
   {
     islink: false,
-    title: 'Register',
-    link: '/verify-email',
+    title: 'CONTACTS',
+    link: '/',
+    className: 'login-link'
+  },
+  {
+    islink: false,
+    title: 'NEWS',
+    link: '/',
     className: 'register-link'
   }
 ];

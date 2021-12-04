@@ -10,7 +10,7 @@ const palette = {
     lightGreen: '#D4F7DC'
   },
   primary: {
-    main: '#3CAE5C',
+    main: '#FAA864',
     light: '#E4F6E9'
   },
   secondary: {
