@@ -19,7 +19,7 @@ const AnimalCruelty = () => {
                     <Grid item xs={12} md={4}>
                         <Box  
                             mx={10} 
-                            my={isXsDown ? 0 : 10} 
+                            my={isXsDown ? 2 : 10} 
                             className={classes.textcontainer}
                         >
                             <Typography 
@@ -61,6 +61,7 @@ const AnimalCruelty = () => {
                             </Box>
                             }
                             <Grid
+                               style={{overflow: isXsDown ? "scroll" : "hide"}}
                                className={classes.cardVideo}
                                item
                                xs={12} 
@@ -92,12 +93,11 @@ const useStyles = makeStyles((theme) => ({
     textcontainer:{
     },
     text:{
-        fontSize:"24px",
+       fontSize:"24px", 
         color:"#FFFFFF",
         width:"100%",
-        lineHeight:"102px",
+        lineHeight:"40px",
         fontFamily: 'Montserrat',
-
     },
     text1:{
         fontSize: "18px", 
@@ -107,6 +107,7 @@ const useStyles = makeStyles((theme) => ({
     },
     cardVideo:{
         display:"flex",
+        maxHeight:"500px",
     },
     navigationArrow:{
         position:"absolute",

@@ -16,8 +16,8 @@ export const landingPageLinkList = [
   {
     islink: false,
     title: 'CONTACTS',
-    link: '/',
-    className: 'login-link'
+    link: '/contact',
+    className: 'contact-link'
   },
   {
     islink: false,

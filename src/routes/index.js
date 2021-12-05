@@ -21,6 +21,11 @@ const routes = [
     component: lazy(() => import('pages/HomePage')),
     layout: 'public'
   },
+  {
+    path: '/contact',
+    component: lazy(() => import('pages/Contact')),
+    layout: 'public'
+  },
 
   // {
   //   path: PATHS.dashboard,

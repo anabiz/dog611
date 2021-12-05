@@ -24,10 +24,10 @@ export default function Input() {
       root: {
         border: '0.5px solid #CDCED9',
         borderRadius: '4px',
-        backgroundColor: '#fff',
+        backgroundColor: '#A4DEF9',
 
         '&:hover': {
-          backgroundColor: '#fff'
+          backgroundColor: '#A4DEF9'
         },
         '&$hover': {
           backgroundColor: '#fff',
@@ -35,7 +35,7 @@ export default function Input() {
           borderColor: '#083A55'
         },
         '&$focused': {
-          backgroundColor: '#fff',
+          backgroundColor: '##A4DEF9',
           boxShadow: `none`,
           borderColor: '#083A55'
         },

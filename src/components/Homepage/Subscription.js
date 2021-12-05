@@ -20,7 +20,7 @@ const Subscription = () => {
   return (
     <div >
          <main>
-            <Box style={{ minHeight:"300px" }}>
+            <Box style={{ minHeight:"300px",backgroundColor: "#100F0F" }}>
                 <Grid container direction= {isSmDown ? 'column-reverse' : null}>
                     <Grid item xs={12} md={8}>
                         <Box py={12} className={classes.textholder} style={{ textAlign:"center",height:"100%", backgroundColor: "#4C3932"}}>
