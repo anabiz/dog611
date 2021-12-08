@@ -30,7 +30,7 @@ const initialFormValue = {
     cardHolder:"",
     cardNumber:"",
     cardExpirationMonth:"",
-    cardExpirationDay:"",
+    cardExpirationYear:"",
     cvv:""
 }
 
@@ -107,22 +107,48 @@ const GiftForm = () => {
                     >    
                     </TextField>
                 </Grid>
+                <Grid xs={12} item container spacing={2} >
+                    <Grid xs={6} item>
+                        <TextField
+                            variant='filled' 
+                            fullWidth 
+                            label='Country' 
+                            name='country' 
+                            value={vales.country}
+                            onChange={handleChange}
+                        >    
+                        </TextField>
+                    </Grid>
+                    <Grid xs={6} item>
+                        <TextField
+                            variant='filled' 
+                            fullWidth 
+                            label='State' 
+                            name='state' 
+                            value={vales.state}
+                            onChange={handleChange}
+                        >    
+                        </TextField>
+                    </Grid>
+                </Grid>
                 <Grid xs={12} item>
                     <TextField
                         variant='filled' 
                         fullWidth 
-                        label='Country' 
-                        name='country' 
-                        value={vales.country}
+                        label='Postal Code' 
+                        name='postalCode' 
+                        value={vales.postalCode}
                         onChange={handleChange}
                     >    
                     </TextField>
+                </Grid>
+                <Grid xs={12} item>
                     <TextField
                         variant='filled' 
                         fullWidth 
-                        label='State' 
-                        name='state' 
-                        value={vales.state}
+                        label='Phone Number' 
+                        name='phone' 
+                        value={vales.phone}
                         onChange={handleChange}
                     >    
                     </TextField>
@@ -140,20 +166,66 @@ const GiftForm = () => {
                 </Grid>
                 <Grid xs={12} item>
                     <TextField
-                        multiline
-                        rows={4}
                         variant='filled' 
                         fullWidth 
-                        label='Message' 
-                        name='message' 
-                        value={vales.message}
+                        label='Card Holder(s) Name' 
+                        name='cardHolder' 
+                        value={vales.cardHolder}
                         onChange={handleChange}
                     >    
                     </TextField>
                 </Grid>
-                
-                <Grid>
-                    
+                <Grid xs={12} item>
+                    <TextField
+                        variant='filled' 
+                        fullWidth 
+                        label='Credit Card Number' 
+                        name='cardNumber' 
+                        value={vales.cardNumber}
+                        onChange={handleChange}
+                    >    
+                    </TextField>
+                </Grid>
+
+                <Grid xs={12} item>
+                    <FormLabel>
+                       Credit Card Expiration
+                    </FormLabel>
+                </Grid>
+                <Grid xs={12} item container spacing={2} >
+                    <Grid xs={4} item>
+                        <TextField
+                            variant='filled' 
+                            fullWidth 
+                            label='Month' 
+                            name='cardExpirationMonth' 
+                            value={vales.cardExpirationMonth}
+                            onChange={handleChange}
+                        >    
+                        </TextField>
+                    </Grid>
+                    <Grid xs={4} item>
+                        <TextField
+                            variant='filled' 
+                            fullWidth 
+                            label='Year' 
+                            name='cardExpirationYear' 
+                            value={vales.cardExpirationYear}
+                            onChange={handleChange}
+                        >    
+                        </TextField>
+                    </Grid>
+                    <Grid xs={4} item>
+                        <TextField
+                            variant='filled' 
+                            fullWidth 
+                            label='CVV' 
+                            name='cvv' 
+                            value={vales.cvv}
+                            onChange={handleChange}
+                        >    
+                        </TextField>
+                    </Grid>
                 </Grid>
                 <Button 
                     color='primary' 
