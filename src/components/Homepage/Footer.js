@@ -66,12 +66,12 @@ const Footer = () => {
                             <h1
                                 className={classes.text1}
                             >
-                                info@deficonnect.tech
+                                Saveoursouls611@gmail.com
                             </h1>
                             <h1
                                 className={classes.text1}
                             >
-                                +2348178704232
+                                +1(773)647-4911
                             </h1>
                                
                             <Box style={{width:"100%"}}>

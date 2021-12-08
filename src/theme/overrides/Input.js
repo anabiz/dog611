@@ -24,7 +24,7 @@ export default function Input() {
       root: {
         border: '0.5px solid #CDCED9',
         borderRadius: '4px',
-        backgroundColor: '#A4DEF9',
+        // backgroundColor: '#A4DEF9',
 
         '&:hover': {
           backgroundColor: '#A4DEF9'
@@ -35,7 +35,7 @@ export default function Input() {
           borderColor: '#083A55'
         },
         '&$focused': {
-          backgroundColor: '##A4DEF9',
+          backgroundColor: '#A4DEF9',
           boxShadow: `none`,
           borderColor: '#083A55'
         },
@@ -44,11 +44,11 @@ export default function Input() {
         },
 
         '&.Mui-error, &.Mui-error$focused': {
-          borderColor: '#F48989'
+          // borderColor: '#F48989'
         },
 
         '& .MuiOutlinedInput-notchedOutline': {
-          border: 0
+          // border: 0
         }
       },
 

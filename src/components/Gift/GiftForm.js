@@ -1,16 +1,40 @@
-import React, { useState,useEffect } from 'react';
-import { Typography,Button,Container,useMediaQuery, makeStyles, Box,useTheme, Grid, Hidden, TextField } from '@material-ui/core';
+import React, { useState } from 'react';
+import { 
+    FormControl,
+    FormControlLabel,
+    Typography,
+    Button,
+    useMediaQuery,
+    makeStyles, 
+    Box,
+    useTheme, 
+    Grid, 
+    Hidden, 
+    TextField, 
+    FormLabel, 
+    RadioGroup, 
+    Radio 
+} from '@material-ui/core';
 
 
 const initialFormValue = {
-    firstName:"",
-    lastName:"",
+    amount :"",
+    giftingOption:"",
+    name:"",
+    address:"",
+    country:"",
+    State:"",
+    postalCode:"",
     phone:"",
     email:"",
-    message:""
+    cardHolder:"",
+    cardNumber:"",
+    cardExpirationMonth:"",
+    cardExpirationDay:"",
+    cvv:""
 }
 
-const ContactForm = () => {
+const GiftForm = () => {
     const theme = useTheme();
     const isSmDown = useMediaQuery(theme.breakpoints.down('sm'));
     const isMdDown = useMediaQuery(theme.breakpoints.down('md'));
@@ -32,12 +56,12 @@ const ContactForm = () => {
         <Typography 
             className={classes.text}
         >
-            CONTACT
+            GIFT FORM
         </Typography>
         <Typography
             className={classes.text1}
         >
-            Fill out the form below and we get in touch soon.
+            Fill out the form below to support our mission
         </Typography>
         <Box style={{backgroundColor:"#FFFFFF"}}>
             <Grid spacing={2} container>
@@ -45,9 +69,29 @@ const ContactForm = () => {
                     <TextField
                         variant='filled' 
                         fullWidth 
-                        label='First name' 
-                        name='firstName' 
-                        value={vales.firstName}
+                        label='Enter the amount' 
+                        name='amount' 
+                        value={vales.amount}
+                        onChange={handleChange}
+                    >    
+                    </TextField>
+                </Grid>
+                <Grid xs={12} item>
+                    <FormControl>
+                        <FormLabel>Choose gifting option</FormLabel>
+                        <RadioGroup>
+                            <FormControlLabel value="monthly" control={<Radio/>} label="Monthly" />
+                            <FormControlLabel value="one time" control={<Radio/>} label="One-time" />
+                        </RadioGroup>
+                    </FormControl>
+                </Grid>
+                <Grid xs={12} item>
+                    <TextField
+                        variant='filled' 
+                        fullWidth 
+                        label='First and Last Name' 
+                        name='name' 
+                        value={vales.name}
                         onChange={handleChange}
                     >    
                     </TextField>
@@ -56,9 +100,9 @@ const ContactForm = () => {
                     <TextField
                         variant='filled' 
                         fullWidth 
-                        label='Last name' 
-                        name='lastName' 
-                        value={vales.lastName}
+                        label='Address' 
+                        name='address' 
+                        value={vales.address}
                         onChange={handleChange}
                     >    
                     </TextField>
@@ -67,9 +111,18 @@ const ContactForm = () => {
                     <TextField
                         variant='filled' 
                         fullWidth 
-                        label='Phone' 
-                        name='phone' 
-                        value={vales.phone}
+                        label='Country' 
+                        name='country' 
+                        value={vales.country}
+                        onChange={handleChange}
+                    >    
+                    </TextField>
+                    <TextField
+                        variant='filled' 
+                        fullWidth 
+                        label='State' 
+                        name='state' 
+                        value={vales.state}
                         onChange={handleChange}
                     >    
                     </TextField>
@@ -141,4 +194,4 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-export default ContactForm;
+export default GiftForm;

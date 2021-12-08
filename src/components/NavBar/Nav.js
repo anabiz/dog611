@@ -10,25 +10,24 @@ import { Link } from 'react-router-dom';
 import DrawerComponent from './Drawer';
 import { landingPageLinkList } from '../../utils/NavLinkList'
 import logo from 'assets/logo.png';
-import Auth from 'utils/Auth';
+import GiftImg from 'assets/gift-img.png';
+
 
 const NavBar = ({ menu }) => {
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
-  const handleLogout = () => {
-    Auth.logOut();
-  };
+
 
   return (
     <AppBar position='static' className={classes.root} elevation={1}>
       <Toolbar>
         <Link to="/">
-          <img src={logo} alt='logo' style={{marginTop:"12px"}}/>
+          <img src={logo} alt='logo' style={{marginTop:"1px",height:"45px"}}/>
         </Link>
         {isMobile ? (
-          <DrawerComponent menu={landingPageLinkList} logout={handleLogout} />
+          <DrawerComponent menu={landingPageLinkList} />
         ) : (
           <div className={classes.navlinks}>
             {menu?.map((item) => {
@@ -53,11 +52,11 @@ const NavBar = ({ menu }) => {
               );
             })}
             <Link
-              to={'/'}
-              className={classes.link}
-              onClick={handleLogout}
+              to={'/gift'}
+              className={classes.link1}
             >
-              Logout
+              <img src={GiftImg}>
+              </img>
             </Link>
           </div>
         )}
@@ -69,7 +68,7 @@ export default NavBar;
 
 const useStyles = makeStyles({
   root: {
-      height:"60px",
+      height:"50px",
     backgroundColor: '#363030',
     display: 'flex',
     '& .MuiToolbar-root': {
@@ -89,5 +88,16 @@ const useStyles = makeStyles({
     textDecoration: 'none',
     padding: '0.5rem 1rem',
     fontWeight: 400
+  },
+  link1: {
+    fontFamily: 'Ubuntu',
+    fontSize: '14px',
+    color: '#FFFFFF',
+    textDecoration: 'none',
+    padding: '0.1rem 0.5rem',
+    fontWeight: 400,
+    height:"75%",
+    backgroundColor:"#FAA864"
   }
+
 });

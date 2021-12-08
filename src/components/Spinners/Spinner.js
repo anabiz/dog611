@@ -1,6 +1,6 @@
 import React from "react";
 import { css } from "@emotion/react";
-import RingLoader from "react-spinners/RingLoader";
+import ClipLoader from "react-spinners/ClipLoader";
 import styled from "styled-components";
 
 // Can be a string as well. Need to ensure each key-value pair ends with ;
@@ -28,9 +28,9 @@ export default function Spinner(){
   
     return (
       <LoaderContainer className="sweet-loading">
-        <Header>Tech4Dev</Header>
+        <Header>DOG611</Header>
     
-        <RingLoader
+        <ClipLoader
           css={override}
           size={150}
           color={"#083A55"}

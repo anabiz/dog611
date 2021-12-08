@@ -26,6 +26,11 @@ const routes = [
     component: lazy(() => import('pages/Contact')),
     layout: 'public'
   },
+  {
+    path: '/gift',
+    component: lazy(() => import('pages/Gift')),
+    layout: 'public'
+  },
 
   // {
   //   path: PATHS.dashboard,

@@ -9,10 +9,10 @@ import {
   makeStyles
 } from '@material-ui/core';
 import { Link, useLocation } from 'react-router-dom';
-
+import GiftImg from 'assets/gift-img.png';
 import MenuIcon from '@material-ui/icons/Menu';
 
-const DrawerComponent = ({ menu, logout }) => {
+const DrawerComponent = ({ menu }) => {
   const classes = useStyles();
   const [openDrawer, setOpenDrawer] = useState(false);
   const location = useLocation();
@@ -36,11 +36,10 @@ const DrawerComponent = ({ menu, logout }) => {
           })}
 
           <ListItem onClick={() => setOpenDrawer(false)}>
-            <ListItemText>
-              <Link to={'/'} className={classes.link} onClick={logout}>
-                Logout
+              <Link to={'/gift'} className={classes.link1}>
+                <img src={GiftImg} style={{height:"20px"}}>
+                </img>
               </Link>
-            </ListItemText>
           </ListItem>
           <Divider />
         </List>
@@ -67,5 +66,13 @@ const useStyles = makeStyles(() => ({
   },
   icon:{
     color:"#FFFFF"
+  },
+  link1: {
+    fontSize: '14px',
+    textDecoration: 'none',
+    padding: '0.7rem 0.5rem',
+    fontWeight: 400,
+    height:"40px",
+    backgroundColor:"#FAA864"
   }
 }));
