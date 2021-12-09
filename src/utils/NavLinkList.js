@@ -22,8 +22,8 @@ export const landingPageLinkList = [
   {
     islink: false,
     title: 'NEWS',
-    link: '/',
-    className: 'register-link'
+    link: '/news',
+    className: 'news-link'
   }
 ];
 

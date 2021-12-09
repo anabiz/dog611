@@ -215,7 +215,7 @@ const GiftForm = () => {
                         >    
                         </TextField>
                     </Grid>
-                    <Grid xs={4} item>
+                    <Grid xs={4} item >
                         <TextField
                             variant='filled' 
                             fullWidth 

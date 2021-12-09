@@ -48,7 +48,7 @@ const DrawerComponent = ({ menu }) => {
         onClick={() => setOpenDrawer(!openDrawer)}
         className={classes.icon}
       >
-        <MenuIcon color="#FFFFF"/>
+        <MenuIcon className={classes.root} />
       </IconButton>
     </>
   );
@@ -56,6 +56,9 @@ const DrawerComponent = ({ menu }) => {
 export default DrawerComponent;
 
 const useStyles = makeStyles(() => ({
+  root:{
+    color:"#FFFFFF",
+  },
   link: {
     fontFamily: 'Ubuntu',
     fontSize: '16px',
@@ -65,7 +68,10 @@ const useStyles = makeStyles(() => ({
     fontWeight: 400
   },
   icon:{
-    color:"#FFFFF"
+    color:"#FFFFF",
+    '& .MuiIconButton-root':{
+      color:"#FFFFFF"
+    },
   },
   link1: {
     fontSize: '14px',
