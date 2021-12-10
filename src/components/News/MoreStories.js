@@ -20,7 +20,7 @@ const MoreStories = () => {
 
   return (
     <div style={{backgroundColor: '#FFFFFF',minHeight: "300px", width:"100%"}}>
-        <Box width= {!isMdDown || isXsDown ? "80%" : "100%"} style={{margin:"20px auto"}}>
+        <Box width= {!isMdDown || isXsDown ? "80%" : "100%"} style={{margin:"20px auto",border:"1px solid #FFFFFF"}}>
             <Typography 
                 className={classes.headtext}
             >
@@ -117,7 +117,7 @@ const useStyles = makeStyles((theme) => ({
     },
     headtext:{
         fontSize:"24px",
-        margin:"12px 0px", 
+        margin:"12px auto", 
         marginTop:"12px",
         color:"#4C3932",
         lineHeight:"25px",

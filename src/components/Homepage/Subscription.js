@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { Typography, Button,TextField,useMediaQuery, makeStyles, Box,useTheme, Grid, Hidden, ListItem } from '@material-ui/core';
-import dogPic from '../../assets/dog-img3.png'
+import dogPic from '../../assets/dog-img3.png';
+import { newsLetter } from '../../services/email';
+
+const initialFormValue = {
+    fullName:"",
+    email:""
+}
 
 const Subscription = () => {
     const theme = useTheme();
@@ -9,11 +15,14 @@ const Subscription = () => {
     const isXsDown = useMediaQuery(theme.breakpoints.down('xs'));
     const classes = useStyles();
 
-    const handleChange = ()=>{
+    const [values, setValues] = useState(initialFormValue);
 
+    const handleChange=({ target: { name, value} })=>{
+        setValues((prev) => ({ ...prev, [name]: value }));
     }
-    const handleSubmit = ()=>{
 
+    const handleSubmit= async()=>{
+        const resp = await newsLetter(values);   
     }
     
 
@@ -40,7 +49,8 @@ const Subscription = () => {
                                     variant='filled' 
                                     fullWidth 
                                     label='Full name' 
-                                    name='fullname' 
+                                    name='fullName' 
+                                    value={values.fullName}
                                     style={{width:isXsDown ? "100%" : "70%", margin:"20px 0px 0px 0px"}}
                                     onChange={handleChange} 
                                 />
@@ -48,6 +58,7 @@ const Subscription = () => {
                                     variant='filled' 
                                     fullWidth label='E-mail' 
                                     name='email' 
+                                    value={values.email}
                                     style={{width:isXsDown ? "100%" : "70%", margin:"20px 0px 0px 0px"}}
                                     onChange={handleChange} 
                                 />

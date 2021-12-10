@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import { Typography,Button,Container,useMediaQuery, makeStyles, Box,useTheme, Grid, Hidden, TextField } from '@material-ui/core';
-
+import {contactUs} from '../../services/email'
 
 const initialFormValue = {
     firstName:"",
@@ -17,13 +17,13 @@ const ContactForm = () => {
     const isXsDown = useMediaQuery(theme.breakpoints.down('xs'));
     const classes = useStyles();
 
-    const [vales, setValues] = useState(initialFormValue);
+    const [values, setValues] = useState(initialFormValue);
 
     const handleChange=({ target: { name, value} })=>{
         setValues((prev) => ({ ...prev, [name]: value }));
     }
-    const handleSubmit=()=>{
-
+    const handleSubmit= async()=>{
+         const resp = await contactUs(values);   
     }
 
   return (
@@ -47,7 +47,7 @@ const ContactForm = () => {
                         fullWidth 
                         label='First name' 
                         name='firstName' 
-                        value={vales.firstName}
+                        value={values.firstName}
                         onChange={handleChange}
                     >    
                     </TextField>
@@ -58,7 +58,7 @@ const ContactForm = () => {
                         fullWidth 
                         label='Last name' 
                         name='lastName' 
-                        value={vales.lastName}
+                        value={values.lastName}
                         onChange={handleChange}
                     >    
                     </TextField>
@@ -69,7 +69,7 @@ const ContactForm = () => {
                         fullWidth 
                         label='Phone' 
                         name='phone' 
-                        value={vales.phone}
+                        value={values.phone}
                         onChange={handleChange}
                     >    
                     </TextField>
@@ -80,7 +80,7 @@ const ContactForm = () => {
                         fullWidth 
                         label='Email' 
                         name='email' 
-                        value={vales.email}
+                        value={values.email}
                         onChange={handleChange}
                     >    
                     </TextField>
@@ -93,7 +93,7 @@ const ContactForm = () => {
                         fullWidth 
                         label='Message' 
                         name='message' 
-                        value={vales.message}
+                        value={values.message}
                         onChange={handleChange}
                     >    
                     </TextField>
