@@ -1,14 +1,9 @@
 import React, { useState,useEffect } from 'react';
 import { Typography,Button,Container,useMediaQuery, makeStyles, Box,useTheme, Grid, Hidden, TextField } from '@material-ui/core';
-import {contactUs} from '../../services/email'
+import {contactUs} from '../../services/email';
+import { Controller, useForm, } from "react-hook-form";
+import { toast } from 'react-hot-toast';
 
-const initialFormValue = {
-    firstName:"",
-    lastName:"",
-    phone:"",
-    email:"",
-    message:""
-}
 
 const ContactForm = () => {
     const theme = useTheme();
@@ -16,19 +11,36 @@ const ContactForm = () => {
     const isMdDown = useMediaQuery(theme.breakpoints.down('md'));
     const isXsDown = useMediaQuery(theme.breakpoints.down('xs'));
     const classes = useStyles();
+    const { register, control, formState: { errors }, handleSubmit, reset } = useForm();
+    const formRules = { required: "This field is required" };
 
-    const [values, setValues] = useState(initialFormValue);
 
-    const handleChange=({ target: { name, value} })=>{
-        setValues((prev) => ({ ...prev, [name]: value }));
-    }
-    const handleSubmit= async()=>{
-         const resp = await contactUs(values);   
+    const [loading, setLoading] = useState(false);
+
+
+    const handleSubmitForm= async(values)=>{
+        setLoading(true)
+        const resp = await contactUs(values); 
+        if(resp.status === 200){
+            toast.success('Form submitted, thank you!', {
+                duration: 10000
+            });
+            reset();
+        }else{
+            toast.error('An error occured, please try again', {
+                duration: 10000
+            });
+        } 
+        setLoading(false)
     }
 
   return (
     <div style={{backgroundColor: '#FFFFFF',minHeight: "300px"}}>
-      <form className={classes.root} style={{maxWidth:isXsDown ? "95%" : "70%",}}>
+    <form 
+        className={classes.root} 
+        style={{maxWidth:isXsDown ? "95%" : "70%",}}
+        onSubmit={handleSubmit(handleSubmitForm)}
+    >
         <Typography 
             className={classes.text}
         >
@@ -46,9 +58,9 @@ const ContactForm = () => {
                         variant='filled' 
                         fullWidth 
                         label='First name' 
-                        name='firstName' 
-                        value={values.firstName}
-                        onChange={handleChange}
+                        error={!!errors.firstName}
+                        helperText={errors.firstName?.message}
+                        {...(register("firstName", formRules))}
                     >    
                     </TextField>
                 </Grid>
@@ -57,9 +69,9 @@ const ContactForm = () => {
                         variant='filled' 
                         fullWidth 
                         label='Last name' 
-                        name='lastName' 
-                        value={values.lastName}
-                        onChange={handleChange}
+                        error={!!errors.lastName}
+                        helperText={errors.lastName?.message}
+                        {...(register("lastName", formRules))}
                     >    
                     </TextField>
                 </Grid>
@@ -68,9 +80,14 @@ const ContactForm = () => {
                         variant='filled' 
                         fullWidth 
                         label='Phone' 
-                        name='phone' 
-                        value={values.phone}
-                        onChange={handleChange}
+                        error={!!errors.phone}
+                        helperText={errors.phone?.message}
+                        {...(register("phone", {
+                            ...formRules,
+                            validate: {
+                              isNaN: value => !isNaN(value) || "This should be numbers"
+                            }
+                        }))}
                     >    
                     </TextField>
                 </Grid>
@@ -79,9 +96,15 @@ const ContactForm = () => {
                         variant='filled' 
                         fullWidth 
                         label='Email' 
-                        name='email' 
-                        value={values.email}
-                        onChange={handleChange}
+                        error={!!errors.email}
+                        helperText={errors.email?.message}
+                        {...(register("email", {
+                            ...formRules,
+                            pattern: {
+                              value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                              message: 'Provide a valid email address'
+                            }
+                        }))}
                     >    
                     </TextField>
                 </Grid>
@@ -92,9 +115,9 @@ const ContactForm = () => {
                         variant='filled' 
                         fullWidth 
                         label='Message' 
-                        name='message' 
-                        value={values.message}
-                        onChange={handleChange}
+                        error={!!errors.message}
+                        helperText={errors.message?.message}
+                        {...(register("message", formRules))}
                     >    
                     </TextField>
                 </Grid>
@@ -106,10 +129,10 @@ const ContactForm = () => {
                     color='primary' 
                     style={{width:isXsDown ? "100%" : "15%", margin:"20px 8px"}} 
                     type='submit' 
-                    onClick={handleSubmit} 
+                    // onClick={handleSubmit} 
                     loading
                 >
-                    SUBMIT
+                    {loading ? "SUBMITTING" : "SUBMIT" }
                 </Button>
             </Grid>
         </Box>

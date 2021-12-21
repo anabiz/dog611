@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Typography, Container,CardMedia,useMediaQuery, makeStyles, Box,useTheme, Grid, Hidden, ListItem } from '@material-ui/core';
 import backArrow from '../../assets/arrowb.png';
 import forwardArrow from '../../assets/arrowf.png'
+import { swapArrayElements } from '../../utils/helper'
 
 const AnimalCruelty = () => {
     const theme = useTheme();
@@ -9,7 +10,24 @@ const AnimalCruelty = () => {
     const isMdDown = useMediaQuery(theme.breakpoints.down('md'));
     const isXsDown = useMediaQuery(theme.breakpoints.down('xs'));
     const classes = useStyles();
+    const [isSlideItem, setIsSlideItem] = useState(false)
+
+    useEffect(()=>{
+    },[isSlideItem])
     
+  const slideForward = ()=>{
+      let temp = vedios[0];
+      vedios.shift();
+      vedios.push(temp);
+      setIsSlideItem((prev)=> !prev)
+  }
+
+  const slideBackward = ()=>{
+    let temp = vedios[vedios.length - 1];
+    vedios.pop();
+    vedios.unshift(temp);
+    setIsSlideItem((prev)=> !prev)  
+  }
 
   return (
     <div >
@@ -51,10 +69,12 @@ const AnimalCruelty = () => {
                                 className={classes.navigationArrow}
                             >
                                 <img 
+                                   onClick={slideBackward}
                                    style={{maxWidth:"50px", maxHeight:"50px"}}
                                    src={forwardArrow}
                                ></img>
                                 <img 
+                                   onClick={slideForward}
                                    style={{maxWidth:"50px", maxHeight:"50px"}}
                                    src={backArrow}
                                 ></img>

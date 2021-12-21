@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { Typography, Button,TextField,useMediaQuery, makeStyles, Box,useTheme, Grid, Hidden, ListItem } from '@material-ui/core';
 import dogPic from '../../assets/dog-img3.png';
 import { newsLetter } from '../../services/email';
+import { Controller, useForm, } from "react-hook-form";
+import { toast } from 'react-hot-toast';
 
-const initialFormValue = {
-    fullName:"",
-    email:""
-}
 
 const Subscription = () => {
     const theme = useTheme();
@@ -15,14 +13,25 @@ const Subscription = () => {
     const isXsDown = useMediaQuery(theme.breakpoints.down('xs'));
     const classes = useStyles();
 
-    const [values, setValues] = useState(initialFormValue);
+    const { register, control, formState: { errors }, handleSubmit, reset } = useForm();
+    const formRules = { required: "This field is required" };
 
-    const handleChange=({ target: { name, value} })=>{
-        setValues((prev) => ({ ...prev, [name]: value }));
-    }
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit= async()=>{
-        const resp = await newsLetter(values);   
+    const handleSubmitForm = async(values)=>{
+        setLoading(true)
+        const resp = await newsLetter(values);
+        if(resp.status === 200){
+            toast.success('Form submitted, thank you!', {
+                duration: 10000
+            });
+            reset();
+        }else{
+            toast.error('An error occured, please try again', {
+                duration: 10000
+            });
+        } 
+        setLoading(false)   
     }
     
 
@@ -33,6 +42,7 @@ const Subscription = () => {
                 <Grid container direction= {isSmDown ? 'column-reverse' : null}>
                     <Grid item xs={12} md={8}>
                         <Box py={12} className={classes.textholder} style={{ textAlign:"center",height:"100%", backgroundColor: "#4C3932"}}>
+                           <form onSubmit={handleSubmit(handleSubmitForm)}>
                             <Box mx={8} style={{ width:"70%", textAlign:"left", border:"1px solid #4C3932"}}>
                                 <h1 
                                    className={classes.text}
@@ -49,18 +59,26 @@ const Subscription = () => {
                                     variant='filled' 
                                     fullWidth 
                                     label='Full name' 
-                                    name='fullName' 
-                                    value={values.fullName}
+                                    className={classes.root}
                                     style={{width:isXsDown ? "100%" : "70%", margin:"20px 0px 0px 0px"}}
-                                    onChange={handleChange} 
+                                    error={!!errors.fullName}
+                                    helperText={errors.fullName?.message}
+                                    {...(register("fullName", formRules))}
                                 />
                                 <TextField
                                     variant='filled' 
                                     fullWidth label='E-mail' 
-                                    name='email' 
-                                    value={values.email}
-                                    style={{width:isXsDown ? "100%" : "70%", margin:"20px 0px 0px 0px"}}
-                                    onChange={handleChange} 
+                                    className={classes.root}
+                                    style={{width:isXsDown ? "100%" : "70%", margin:"20px 0px 0px 0px",color:"#FFFFFF"}}
+                                    error={!!errors.email}
+                                    helperText={errors.email?.message}
+                                    {...(register("email", {
+                                        ...formRules,
+                                        pattern: {
+                                          value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                                          message: 'Provide a valid email address'
+                                        }
+                                    }))}
                                 />
                                 <Button 
                                     color='primary' 
@@ -69,9 +87,10 @@ const Subscription = () => {
                                     onClick={handleSubmit} 
                                     loading
                                 >
-                                    SUBSCRIBE
+                                    { loading ? "SUBMITTING" : "SUBSCRIBE" }
                                 </Button>
                             </Box> 
+                          </form>
                         </Box>
                     </Grid>
                     <Grid item xs={12} md={4}>
@@ -87,7 +106,11 @@ const Subscription = () => {
 };
 
 const useStyles = makeStyles((theme) => ({
-    textcontainer:{
+    root:{
+        '& .MuiInputBase-input':{
+            color:"#3CBC8D",
+            backgroungColor:"#FFFFFF"
+        }
     },
     text:{
         fontSize:"24px",

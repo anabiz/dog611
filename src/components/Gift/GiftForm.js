@@ -41,7 +41,7 @@ const GiftForm = () => {
     const isXsDown = useMediaQuery(theme.breakpoints.down('xs'));
     const classes = useStyles();
 
-    const [vales, setValues] = useState(initialFormValue);
+    const [values, setValues] = useState(initialFormValue);
 
     const handleChange=({ target: { name, value} })=>{
         setValues((prev) => ({ ...prev, [name]: value }));
@@ -71,7 +71,7 @@ const GiftForm = () => {
                         fullWidth 
                         label='Enter the amount' 
                         name='amount' 
-                        value={vales.amount}
+                        onVolumeChangeCapture={values.amount}
                         onChange={handleChange}
                     >    
                     </TextField>
@@ -79,7 +79,11 @@ const GiftForm = () => {
                 <Grid xs={12} item>
                     <FormControl>
                         <FormLabel>Choose gifting option</FormLabel>
-                        <RadioGroup>
+                        <RadioGroup
+                            name="giftingOption"
+                            value={values.giftingOption}
+                            onChange={handleChange}
+                        >
                             <FormControlLabel value="monthly" control={<Radio/>} label="Monthly" />
                             <FormControlLabel value="one time" control={<Radio/>} label="One-time" />
                         </RadioGroup>
@@ -91,7 +95,7 @@ const GiftForm = () => {
                         fullWidth 
                         label='First and Last Name' 
                         name='name' 
-                        value={vales.name}
+                        value={values.name}
                         onChange={handleChange}
                     >    
                     </TextField>
@@ -102,7 +106,7 @@ const GiftForm = () => {
                         fullWidth 
                         label='Address' 
                         name='address' 
-                        value={vales.address}
+                        value={values.address}
                         onChange={handleChange}
                     >    
                     </TextField>
@@ -114,7 +118,7 @@ const GiftForm = () => {
                             fullWidth 
                             label='Country' 
                             name='country' 
-                            value={vales.country}
+                            value={values.country}
                             onChange={handleChange}
                         >    
                         </TextField>
@@ -125,7 +129,7 @@ const GiftForm = () => {
                             fullWidth 
                             label='State' 
                             name='state' 
-                            value={vales.state}
+                            value={values.state}
                             onChange={handleChange}
                         >    
                         </TextField>
@@ -137,7 +141,7 @@ const GiftForm = () => {
                         fullWidth 
                         label='Postal Code' 
                         name='postalCode' 
-                        value={vales.postalCode}
+                        value={values.postalCode}
                         onChange={handleChange}
                     >    
                     </TextField>
@@ -148,7 +152,7 @@ const GiftForm = () => {
                         fullWidth 
                         label='Phone Number' 
                         name='phone' 
-                        value={vales.phone}
+                        value={values.phone}
                         onChange={handleChange}
                     >    
                     </TextField>
@@ -159,7 +163,7 @@ const GiftForm = () => {
                         fullWidth 
                         label='Email' 
                         name='email' 
-                        value={vales.email}
+                        value={values.email}
                         onChange={handleChange}
                     >    
                     </TextField>
@@ -170,7 +174,7 @@ const GiftForm = () => {
                         fullWidth 
                         label='Card Holder(s) Name' 
                         name='cardHolder' 
-                        value={vales.cardHolder}
+                        value={values.cardHolder}
                         onChange={handleChange}
                     >    
                     </TextField>
@@ -181,7 +185,7 @@ const GiftForm = () => {
                         fullWidth 
                         label='Credit Card Number' 
                         name='cardNumber' 
-                        value={vales.cardNumber}
+                        value={values.cardNumber}
                         onChange={handleChange}
                     >    
                     </TextField>
@@ -199,7 +203,7 @@ const GiftForm = () => {
                             fullWidth 
                             label='Month' 
                             name='cardExpirationMonth' 
-                            value={vales.cardExpirationMonth}
+                            value={values.cardExpirationMonth}
                             onChange={handleChange}
                         >    
                         </TextField>
@@ -210,7 +214,7 @@ const GiftForm = () => {
                             fullWidth 
                             label='Year' 
                             name='cardExpirationYear' 
-                            value={vales.cardExpirationYear}
+                            value={values.cardExpirationYear}
                             onChange={handleChange}
                         >    
                         </TextField>
@@ -221,7 +225,7 @@ const GiftForm = () => {
                             fullWidth 
                             label='CVV' 
                             name='cvv' 
-                            value={vales.cvv}
+                            value={values.cvv}
                             onChange={handleChange}
                         >    
                         </TextField>

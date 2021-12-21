@@ -11,7 +11,8 @@ export default function Input() {
 
       root: {
         '&.Mui-error, &$focused': {
-          borderColor: '#F48989'
+          borderColor: '#F48989',
+          backgroundColor:"#FFFFFF"
         },
 
         '&.MuiFilledInput-underline:before, &.MuiFilledInput-underline:after': {
@@ -24,7 +25,7 @@ export default function Input() {
       root: {
         border: '0.5px solid #CDCED9',
         borderRadius: '4px',
-        // backgroundColor: '#A4DEF9',
+        backgroundColor: '#A4DEF9',
 
         '&:hover': {
           backgroundColor: '#A4DEF9'
@@ -63,7 +64,7 @@ export default function Input() {
     MuiFilledInput: {
       root: {
         backgroundColor: '#F5F7FA',
-padding: 0,
+        padding: 0,
       },
       inputMarginDense: {
         paddingTop: 16,

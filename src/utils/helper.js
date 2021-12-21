@@ -19,3 +19,9 @@ export function calculateAge(dateOfBirth) {
     const age = new Date(diffInMs); 
     return Math.abs(age.getUTCFullYear() - 1970);
 }
+
+export function swapArrayElements(arr, indexA, indexB) {
+    var temp = arr[indexA];
+    arr[indexA] = arr[indexB];
+    arr[indexB] = temp;
+};
